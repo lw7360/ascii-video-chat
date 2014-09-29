@@ -1,6 +1,9 @@
 (function() {
         var asciiContainer = document.getElementById("video");
         var capturing = false;
+        var patch;
+        var differ = new diff_match_patch();
+        differ.Diff_Timeout = 1/30;
 
         camera.init({
                 width: 160,
@@ -10,9 +13,13 @@
 
                 onFrame: function(canvas) {
                         ascii.fromCanvas(canvas, {
-                                // contrast: 128,
                                 callback: function(asciiString) {
-                                        asciiContainer.innerHTML = asciiString;
+                                        //asciiContainer.innerHTML = asciiString;
+                                        patch = differ.patch_make(asciiContainer.innerHTML, asciiString);
+                                        //console.log(patch);
+                                        var newAscii = differ.patch_apply(patch, asciiContainer.innerHTML)[0];
+                                        //console.log(newAscii);
+                                        asciiContainer.innerHTML = newAscii;
                                 }
                         });
                 },
