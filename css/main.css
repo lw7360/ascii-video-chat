@@ -12,3 +12,7 @@
 #notSupported {
   display: none;
 }
+
+#share {
+  text-align: center;
+}
