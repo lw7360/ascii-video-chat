@@ -14,11 +14,8 @@
     onFrame: function(canvas) {
       ascii.fromCanvas(canvas, {
         callback: function(asciiString) {
-          //asciiContainer.innerHTML = asciiString;
           patch = differ.patch_make(asciiContainer.innerHTML, asciiString);
-          //console.log(patch);
           var newAscii = differ.patch_apply(patch, asciiContainer.innerHTML)[0];
-          //console.log(newAscii);
           asciiContainer.innerHTML = newAscii;
         }
       });
