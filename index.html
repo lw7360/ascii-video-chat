@@ -37,5 +37,19 @@
   <script src="js/main.js"></script>
   <script src="js/vendor/jquery.min.js"></script>
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script>
+  function makeid() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for(var i = 0; i < 5; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  } 
+  $('#room-btn').click(function() {
+    location.href += "?id=" +  makeid();
+  });
+  </script>
 </body>
 </html>
